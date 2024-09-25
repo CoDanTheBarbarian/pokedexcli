@@ -27,7 +27,7 @@ func commandMap(cfg *config) error {
 	}
 	cfg.nextPageURL = resp.Next
 	cfg.previousPageURL = resp.Previous
-	fmt.Println(cfg.previousPageURL)
+
 	for _, area := range resp.Results {
 		fmt.Printf(" - %s\n", area.Name)
 	}

@@ -4,8 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"pokedexcli/internal/pokeapi"
 	"strings"
+
+	"github.com/CoDanTheBarbarian/pokedexcli/internal/pokeapi"
 )
 
 func startRepl(cfg *config) {
