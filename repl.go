@@ -20,13 +20,14 @@ func startRepl(cfg *config) {
 			continue
 		}
 		commandName := cleanText[0]
+		input := strings.Join(cleanText[1:], " ")
 		availCommands := getCommands()
 		command, ok := availCommands[commandName]
 		if !ok {
 			fmt.Println("invalid command - enter 'help' for info")
 			continue
 		}
-		if err := command.callback(cfg); err != nil {
+		if err := command.callback(cfg, input); err != nil {
 			fmt.Println("ERROR:", err)
 		}
 	}
@@ -42,7 +43,7 @@ func cleanInput(str string) []string {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*config) error
+	callback    func(*config, string) error
 }
 
 type config struct {
@@ -72,6 +73,11 @@ func getCommands() map[string]cliCommand {
 			name:        "mapb",
 			description: "Return to the previous list of 20 location areas",
 			callback:    commandMapb,
+		},
+		"explore": {
+			name:        "explore <area-name>",
+			description: "Lists all the pokemon that can be found in the given area",
+			callback:    commandExplore,
 		},
 	}
 }
