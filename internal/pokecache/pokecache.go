@@ -33,7 +33,7 @@ func (c *Cache) Add(key string, val []byte) error {
 		return fmt.Errorf("cannot add nil value to cache")
 	}
 	c.cache[key] = cacheEntry{
-		createdAt: time.Now(),
+		createdAt: time.Now().UTC(),
 		val:       val,
 	}
 
